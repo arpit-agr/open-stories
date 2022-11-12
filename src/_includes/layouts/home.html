@@ -2,4 +2,16 @@
 
 {%- block content -%}
   {{ content | safe }}
+  <open-stories
+    src="/feed.json"
+    duration="15"
+  ></open-stories>
+{%- endblock -%}
+
+{%- block bodyScripts -%}
+  <script
+  src="/scripts/open-stories.js"
+  type="module"
+  defer
+  ></script>
 {%- endblock -%}
