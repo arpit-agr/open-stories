@@ -1,15 +1,16 @@
 const directoryOutputPlugin = require("@11ty/eleventy-plugin-directory-output");
 const htmlmin = require("html-minifier");
 const CleanCSS = require("clean-css");
+const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.setQuietMode(true);
   eleventyConfig.addPlugin(directoryOutputPlugin);
 
   //Passthrough copy
+	eleventyConfig.addPassthroughCopy("./src/images");
+	eleventyConfig.addPassthroughCopy("./src/scripts");
   // eleventyConfig.addPassthroughCopy("./src/fonts");
-	// eleventyConfig.addPassthroughCopy("./src/images");
-	// eleventyConfig.addPassthroughCopy("./src/scripts");
   // eleventyConfig.addPassthroughCopy({"./src/favicons": "/"});
 	// eleventyConfig.addPassthroughCopy("./src/manifest.webmanifest");
 
@@ -25,6 +26,20 @@ module.exports = function(eleventyConfig) {
     else {
       return code
     }
+  });
+  eleventyConfig.addFilter("isoDate", (dateObj) => {
+		return DateTime.fromJSDate(dateObj).setZone("Asia/Calcutta").toISODate();
+	});
+  eleventyConfig.addFilter("toISO", (dateObj) => {
+    return DateTime.fromJSDate(dateObj).setZone("Asia/Calcutta").toISO();
+  });
+  eleventyConfig.addFilter("nextDay", (dateObj) => {
+    return DateTime.fromJSDate(dateObj).setZone("Asia/Calcutta").plus({ days: 1 });
+  });
+
+  //Collections
+  eleventyConfig.addCollection("stories", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("./src/stories/*.md");
   });
 
   //Transforms
