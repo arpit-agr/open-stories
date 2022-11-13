@@ -13,7 +13,7 @@ open-stories::part(button) {
 	border-radius: 50%;
 	position: relative;
 	border: none;
-	background-color: white;
+	/* background-color: white; */
 }
 
 open-stories::part(button):before {

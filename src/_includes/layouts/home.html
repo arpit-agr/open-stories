@@ -7,6 +7,15 @@
     duration="15"
   >24h
   </open-stories>
+  {%- if env.eleventy === "development" -%}
+    <hr>
+    {%- for post in collections.stories | reverse %}
+      <div class="flow">
+        <span>{{ post.fileSlug }} </span>
+        <pre>{{ post.date | toISO }}</pre>
+      </div>
+    {% endfor %}
+  {%- endif -%}
 {%- endblock -%}
 
 {%- block bodyScripts -%}

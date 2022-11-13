@@ -10,6 +10,9 @@ metadata:
     url: "https://arpit.codes/"
 ---
 {%- set siteUrl =  site.url -%}
+{%- if env.eleventy === "development" -%}
+  {%- set siteUrl =  "/" -%}
+{%- endif -%}
 
 {
   "version": "https://jsonfeed.org/version/1.1",
