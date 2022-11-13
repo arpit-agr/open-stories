@@ -1,0 +1,52 @@
+---
+permalink: 24h-stories.json
+eleventyExcludeFromCollections: true
+metadata:
+  title: "Ephemeral stories"
+  subtitle: "This domain is for use in illustrative examples in documents. You may use this domain in literature without prior coordination or asking for permission."
+  language: en
+  author:
+    name: "Arpit"
+    url: "https://arpit.codes/"
+---
+{%- set siteUrl =  site.url -%}
+
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "{{ metadata.title }}",
+  "language": "{{ metadata.language }}",
+  "home_page_url": "{{ siteUrl }}",
+  "feed_url": "{{ permalink | absoluteUrl(siteUrl) }}",
+  "description": "{{ metadata.subtitle }}",
+  "author": {
+    "name": "{{ metadata.author.name }}",
+    "url": "{{ metadata.author.url }}"
+  },
+  "_open_stories": {
+		"version": "0.0.8"
+	},
+  "items": [
+    {%- for post in collections.stories | reverse %}
+    {%- set id = post.date | isoDate + "-" + post.fileSlug | slugify -%}
+		{%- set postUrl = "/images/" + post.data.url -%}
+    {%- set absolutePostUrl = postUrl | absoluteUrl(siteUrl) %}
+    {%- set expDate = post.date | nextDay -%}
+    {
+      "id": "{{ id }}",
+      "url": "{{ absolutePostUrl }}",
+      "title": "{{ post.data.caption }}",
+      "content_html": {% if post.templateContent %}{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) | dump | safe }}{% else %}"<img src='{{ absolutePostUrl }}' alt='{{ post.data.alt }}'>"{% endif %},
+      "date_published": "{{ post.date | toISO }}",
+      "_open_stories": {
+				"type": "image",
+				"mime_type": "image/jpg",
+				"url": "{{ absolutePostUrl }}",
+				"caption": "{{ post.data.caption }}",
+				"date_expired": "{{ expDate }}",
+				"alt": "{{ post.data.alt }}"
+			}
+    }
+    {% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ]
+}

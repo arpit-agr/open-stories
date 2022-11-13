@@ -2,3 +2,33 @@ body {
 	padding: 1em;
 	font-family: system-ui;
 }
+
+.flow > * + * {
+	margin-top: var(--flow-space, 1em);
+}
+
+open-stories::part(button) {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	position: relative;
+	border: none;
+	background-color: white;
+}
+
+open-stories::part(button):before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	margin: -2px;
+	border-radius: inherit;
+	background: linear-gradient(to right, red, orange);
+}
+
+.is-read::part(button):before {
+	background: aliceblue;
+}

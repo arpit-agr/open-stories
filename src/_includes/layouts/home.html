@@ -3,9 +3,10 @@
 {%- block content -%}
   {{ content | safe }}
   <open-stories
-    src="/feed.json"
+    src="/24h-stories.json"
     duration="15"
-  ></open-stories>
+  >24h
+  </open-stories>
 {%- endblock -%}
 
 {%- block bodyScripts -%}

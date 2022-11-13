@@ -2,10 +2,12 @@ const directoryOutputPlugin = require("@11ty/eleventy-plugin-directory-output");
 const htmlmin = require("html-minifier");
 const CleanCSS = require("clean-css");
 const { DateTime } = require("luxon");
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.setQuietMode(true);
   eleventyConfig.addPlugin(directoryOutputPlugin);
+  eleventyConfig.addPlugin(pluginRss);
 
   //Passthrough copy
 	eleventyConfig.addPassthroughCopy("./src/images");
