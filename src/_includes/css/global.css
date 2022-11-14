@@ -1,12 +1,9 @@
 :root {
 	--gutter: var(--space-s-m);
 	--dialog-height: 100vh;
-}
 
-body {
-	padding: var(--gutter);
-	font-family: system-ui;
-	font-size: var(--step-0);
+	--text: #fdd9dc;
+	--bg: #1f356e;
 }
 
 @supports (height: 100dvh) {
@@ -15,7 +12,18 @@ body {
 	}
 }
 
+body {
+	padding: var(--gutter);
+	background-color: var(--bg);
+	font-family: system-ui;
+	font-size: var(--step-0);
+	color: var(--text);
+}
+
 h1 {
-	font-size: var(--step-3);
+	font-size: var(--step-4);
 	line-height: 1;
+	text-align: center;
+	text-transform: uppercase;
+	font-variation-settings: "wght" 900, "wdth" 50;
 }
