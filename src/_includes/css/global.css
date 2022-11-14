@@ -3,32 +3,45 @@ body {
 	font-family: system-ui;
 }
 
+button {
+	font-size: 1em;
+}
+
 .flow > * + * {
 	margin-top: var(--flow-space, 1em);
 }
 
+open-stories:not(:defined),
 open-stories::part(button) {
+	display: grid;
+	place-content: center;
 	width: 64px;
 	height: 64px;
+	box-shadow: inset 0 0 0 2px Canvas;
+	border: 2px solid CanvasText;
 	border-radius: 50%;
-	position: relative;
-	border: none;
-	/* background-color: white; */
+	font-weight: 500;
 }
 
-open-stories::part(button):before {
-	content: "";
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: -1;
-	margin: -2px;
-	border-radius: inherit;
-	background: linear-gradient(to right, red, orange);
+open-stories:not(:defined) {
+	opacity: 0.55;
+	cursor: not-allowed;
 }
 
-.is-read::part(button):before {
-	background: aliceblue;
+open-stories::part(button) {
+	background-color: CanvasText;
+	color: Canvas;
+	cursor: pointer;
+}
+
+open-stories::part(button):hover {
+	background-color: greenyellow;
+	border-color: greenyellow;
+	color: black;
+}
+
+.is-read::part(button) {
+	background-color: ButtonFace;
+	border-color: ButtonFace;
+	color: CanvasText;
 }
