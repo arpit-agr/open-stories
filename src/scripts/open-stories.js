@@ -544,6 +544,7 @@ class OpenStoriesElement extends HTMLElement {
 			const s = document.createElement("div");
 			s.classList.add("progress"), i.append(s), t.append(i), this.bars.push(i);
 			const a = document.createElement("img");
+			a.setAttribute("loading", "lazy")
 			this.promises.push(new Promise((t) => a.addEventListener("load", t))),
 				(a.src = n._open_stories.url),
 				"alt" in n._open_stories && (a.alt = n._open_stories.alt),
