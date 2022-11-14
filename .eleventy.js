@@ -43,6 +43,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("stories", function(collectionApi) {
     return collectionApi.getFilteredByGlob("./src/stories/*.md");
   });
+  eleventyConfig.addCollection("posters", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("./src/posters/*.md");
+  });
 
   //Transforms
   eleventyConfig.addTransform("htmlmin", function(content, outputPath) {
