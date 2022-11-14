@@ -2,22 +2,18 @@ function css(t) {
 	return `
         :host {
             display: inline-block;
-            font-family: system-ui, sans-serif;
-            --magic-h: 88vh;
-            --magic-w: 88vw;
         }
         ::backdrop {
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
         }
         dialog button {
+						margin: 0;
             border: 0;
             background: 0;
-            appearance: none;
-            cursor: pointer;
-            padding: 0;
-            margin: 0;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
+            appearance: none;
+            cursor: pointer;
         }
         #controls #close,
         #play,
@@ -35,7 +31,7 @@ function css(t) {
             opacity: 0.5;
         }
         :host(open-stories:not(.is-read):not(.is-empty)) .ring {
-            border: 2px solid #08c;
+            border: var(--step--6) solid #08c;
             margin: 0;
         }
         .avatar {
@@ -43,88 +39,79 @@ function css(t) {
             aspect-ratio: 1;
             border-radius: 50%;
         }
-        dialog {
-            height: min(var(--magic-h), var(--magic-w) * 16/9);
-            padding: 0;
-            border: 0;
-            aspect-ratio: 9/16;
-            background: transparent;
-            overflow: visible;
-            max-height: var(--magic-h);
-            max-width: var(--magic-w);
-    }
         #images {
-            overflow: hidden;
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            background: #000;
-            border-radius: 10px;
+					inset: 0;
+					z-index: -1;
+					overflow: hidden;
+					height: 100%;
+					width: 100%;
+					position: absolute;
+					background: #000;
+					border-radius: var(--step--1);
         }
         #images img {
-            position: absolute;
-            max-height: 100%;
-            max-width: 100%;
-            aspect-ratio: 9/16;
-            object-fit: contain;
-            top: 50%;
-            left: 50%;
-            translate: -50% -50%;
-            opacity: 0;
+					position: absolute;
+					aspect-ratio: 9/16;
+					object-fit: contain;
+					opacity: 0;
+					height: 100%;
+					max-width: 100%;
+					max-height: 100%;
         }
         #images img.shown {
             opacity: 1;
         }
         .bar {
-            border-radius: 3px;
+            border-radius: var(--step--5);
             overflow: hidden;
             height: 100%;
             background: rgba(200, 200, 200, .2);
             z-index: 1;
             flex: auto;
-            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 var(--step--1) 0 rgba(0, 0, 0, 0.5);
         }
         #bars {
-            left: 0; 
-            right: 0;
-            top: 0;
-            height: 2px;
-            position: absolute;
-            margin: 10px;
-            display: flex;
-            gap: 5px;
+					height: var(--step--6);
+					margin-block-start: var(--step--2);
+					margin-inline: var(--step--2);
+					display: flex;
+					gap: var(--step--4);
         }
         #controls {
-            left: 0; 
-            right: 0;
-            top: 0;
-            position: absolute;
-            margin: 20px 10px 10px;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            z-index: 1;
+					margin-inline: var(--step--2);
+					display: flex;
+					gap: var(--step--2);
+					align-items: center;
+					z-index: 1;
         }
+				#controls > * {
+					padding-block: var(--step--2);
+					padding-inline: 0;
+				}
         #metadata-details summary {
             align-items: center;
-            font-size: 1.6vh;
+            font-size: var(--step--1);
         }
         #controls button,
         #controls a,
         #metadata-details summary {
             display: inline-flex;
         }
+				#controls a svg {
+					vertical-align: middle;
+				}
         #time,
         #metadata-details {
             flex: auto;
-            font-size: 1.7vh;
+            font-size: var(--step--1);
             color: rgba(255, 255, 255, 0.7);
-            text-shadow: 0 0 3px rgba(0, 0, 0, .4), 0 0 3px rgba(0, 0, 0, .4);
+						font-weight: 700;
+            text-shadow: 0 0 var(--step--5) rgba(0, 0, 0, .4), 0 0 var(--step--5) rgba(0, 0, 0, .4);
         }
         svg {
             width: auto;
-            height: 3.5vh;
-            filter: drop-shadow(0 0 3px rgba(0, 0, 0, .5));
+            height: var(--space-m-l);
+            filter: drop-shadow(0 0 var(--step--5) rgba(0, 0, 0, .5));
             line-height: 0;
         }
         #metadata-details,
@@ -134,7 +121,7 @@ function css(t) {
             z-index: 1;
             left: 0;
             right: 0;
-            padding: 10px;
+            /* padding: var(--step--1); */
         }
         #open-heart {
             left: auto;
@@ -172,12 +159,17 @@ function css(t) {
             opacity: .5;
         }
         #metadata-details {
-            border-radius: 10px;
-            padding: 10px 15px;
+            border-radius: var(--step--1);
+        }
+        #metadata-details > * {
+					padding: var(--step--2);
         }
         #metadata-details[open] {
-            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0)  0%,  rgba(0, 0, 0, 0.2)  25px, rgba(0, 0, 0, .7) 100%);
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0)  0%,  rgba(0, 0, 0, 0.2)  var(--step-1), rgba(0, 0, 0, .7) 100%);
         }
+				#metadata-details[open] > summary {
+					padding-block-end: 0;
+				}
         #caret {
             transition: transform .3s;
         }
@@ -192,14 +184,11 @@ function css(t) {
             width: 100%;
             text-align: left;
             list-style: none;
+						-webkit-tap-highlight-color: transparent;
         }
         summary::-webkit-details-marker { display: none; }
         #metadata {
-            border-radius: 6px;
             color: #fff;
-            line-height: 1.5em;
-            padding: 5px 0;
-            padding-right: 40px;
         }
         #metadata a {
             color: #000;
@@ -247,7 +236,6 @@ function css(t) {
             z-index: 1;
             margin-left: -1vh;
             animation: rotate 2s linear infinite;
-            font-size: 14px;
         }
         @keyframes rotate {
             0% { transform: rotate(0deg); }
@@ -257,46 +245,37 @@ function css(t) {
             display: none;
         }
         #goToBlock {
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 0 2vw;
-            aspect-ratio: 9 / 16;
-            height: min(var(--magic-h), var(--magic-w) * 16/9);
-            position: absolute;
-            top: 50%;
-            z-index: 1;
-            pointer-events: none;
-            box-sizing: border-box;
+					position: absolute;
+					inset: 0;
+					height: 100%;
+					width: 100%;
+					aspect-ratio: 9 / 16;
+					box-sizing: border-box;
+					transform: unset;
+					pointer-events: none;
+					z-index: 1;
     }
         #back, #forward {
-            pointer-events: all;
-            position: absolute;
-            z-index: 1;
-            min-width: 40px;
-            height: calc(100% - 100px);
-            bottom: 50px;
-            padding: 0;
-            font-size: 3vh;
-            width: 20vh;
-            font-family: system-ui, sans-serif;
-            color: #fff;
+					bottom: 50%;
+					transform: translateY(50%);
+					pointer-events: all;
+					position: absolute;
+					z-index: 1;
+					height: calc(100% - (2 * (var(--step--6) + var(--step--2) + var(--step--2) + var(--space-m-l) + var(--step--2))));
+					padding: 0;
+					font-size: var(--step-1);
+					width: calc(33% + var(--space-xl));
+					color: #fff;
         }
         #back {
-            left: -1.5em;
+            left: calc(-1 * var(--space-xl));
             text-align: left;
         }
         #forward {
-            right: -1.5em;
+            right: calc(-1 * var(--space-xl));
             text-align: right;
         }
         @media (max-width: 420px), screen and (orientation: portrait) {
-            :host {
-                --magic-h: calc(var(--mobileVh) * 97);
-                --magic-w: 100vw;
-            }
-            ::backdrop {
-                background-color: #000;
-            }
             #controls #close {
                 display: inline-flex;
             }

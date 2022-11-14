@@ -1,47 +1,21 @@
+:root {
+	--gutter: var(--space-s-m);
+	--dialog-height: 100vh;
+}
+
 body {
-	padding: 1em;
+	padding: var(--gutter);
 	font-family: system-ui;
+	font-size: var(--step-0);
 }
 
-button {
-	font-size: 1em;
+@supports (height: 100dvh) {
+	:root {
+		--dialog-height: 100dvh;
+	}
 }
 
-.flow > * + * {
-	margin-top: var(--flow-space, 1em);
-}
-
-open-stories:not(:defined),
-open-stories::part(button) {
-	display: grid;
-	place-content: center;
-	width: 64px;
-	height: 64px;
-	box-shadow: inset 0 0 0 2px Canvas;
-	border: 2px solid CanvasText;
-	border-radius: 50%;
-	font-weight: 500;
-}
-
-open-stories:not(:defined) {
-	opacity: 0.55;
-	cursor: not-allowed;
-}
-
-open-stories::part(button) {
-	background-color: CanvasText;
-	color: Canvas;
-	cursor: pointer;
-}
-
-open-stories::part(button):hover {
-	background-color: greenyellow;
-	border-color: greenyellow;
-	color: black;
-}
-
-.is-read::part(button) {
-	background-color: ButtonFace;
-	border-color: ButtonFace;
-	color: CanvasText;
+h1 {
+	font-size: var(--step-3);
+	line-height: 1;
 }

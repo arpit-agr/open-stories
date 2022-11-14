@@ -1,0 +1,48 @@
+open-stories:not(:defined),
+open-stories::part(button) {
+	display: grid;
+	place-content: center;
+	width: var(--step-4);
+	height: var(--step-4);
+	box-shadow: inset 0 0 0 var(--step--6) Canvas;
+	border: var(--step--6) solid CanvasText;
+	border-radius: 50%;
+	font-weight: 500;
+	font-size: inherit;
+}
+
+open-stories:not(:defined) {
+	opacity: 0.55;
+	cursor: not-allowed;
+}
+
+open-stories::part(button) {
+	background-color: CanvasText;
+	color: Canvas;
+	cursor: pointer;
+}
+
+open-stories::part(button):hover {
+	background-color: greenyellow;
+	border-color: greenyellow;
+	color: black;
+}
+
+.is-read::part(button) {
+	background-color: ButtonFace;
+	border-color: ButtonFace;
+	color: CanvasText;
+}
+
+open-stories::part(dialog) {
+	width: auto;
+	height: auto;
+	aspect-ratio: 9/16;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	overflow: visible;
+
+	max-height: calc(var(--dialog-height) - var(--space-2xs-xl));
+	max-width: calc(100% - var(--space-2xs-xl));
+}
