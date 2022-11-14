@@ -2,7 +2,10 @@
 {% set css %}
   {% include "./reset.css" %}
   {% include "./a11y.css" %}
+  {% include "./fluid-space.css" %}
+  {% include "./fluid-type.css" %}
   {% include "./global.css" %}
+  {% include "./utilities.css" %}
 {% endset %}
 
 <style>{{ css | cssmin | safe }}</style>
