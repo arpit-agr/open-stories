@@ -63,7 +63,6 @@ open-stories.is-empty::part(button):before {
 
 .is-read::part(button) {
 	border-color: ButtonFace;
-	color: CanvasText;
 }
 
 open-stories::part(dialog) {

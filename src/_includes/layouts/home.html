@@ -2,22 +2,31 @@
 
 {%- block content -%}
   {{ content | safe }}
-  <open-stories
-    src="/24h-stories.json"
-    duration="15"
-  >
-  <img
-    class="display-pic"
-    src="/images/memoji.jpg"
-    alt="Memoji"
-    width="240"
-    height="240"
-    loading="eager"
-  >
-  </open-stories>
+  <div class="stories-container cluster">
+    <open-stories
+      src="/24h-stories.json"
+      duration="15"
+    >
+    <img
+      class="display-pic"
+      src="/images/memoji.jpg"
+      alt="Memoji"
+      width="240"
+      height="240"
+      loading="eager"
+    >
+    </open-stories>
+    <open-stories
+      src="/poster-stories.json"
+      duration="15"
+    >
+    Posters
+    <span>× {{ collections.posters | length }}</span>
+    </open-stories>
+  </div>
   {%- if env.eleventy === "development" -%}
     <hr>
-    {%- for post in collections.stories | reverse %}
+    {%- for post in collections.all | reverse %}
       <div class="flow">
         <span>{{ post.fileSlug }} </span>
         <pre>{{ post.date | toISO }}</pre>

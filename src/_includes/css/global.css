@@ -27,3 +27,7 @@ h1 {
 	text-transform: uppercase;
 	font-variation-settings: "wght" 900, "wdth" 50;
 }
+
+.stories-container {
+	--cluster-horizontal-alignment: center;
+}

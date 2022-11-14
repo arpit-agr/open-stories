@@ -1,3 +1,11 @@
 .flow > * + * {
 	margin-top: var(--flow-space, 1em);
 }
+
+:where(.cluster) {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--cluster-gap, 1em);
+	justify-content: var(--cluster-horizontal-alignment, flex-start);
+	align-items: var(--cluster-vertical-alignment, center);
+}
