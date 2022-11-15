@@ -2,6 +2,11 @@
 
 {%- block content -%}
   {{ content | safe }}
+  {% include "snippets/separator.html" %}
+  <div class="verified cluster">
+    <h2>Arpit Agrawal</h2>
+    {% include "snippets/verified.html" %}
+  </div>
   <div class="stories-container cluster">
     <open-stories
       src="/24h-stories.json"
@@ -24,18 +29,21 @@
     <span>× {{ collections.posters | length }}</span>
     </open-stories>
   </div>
+  {%- endblock -%}
+  
+  {%- block bodyEnd -%}
   {%- if env.eleventy === "development" -%}
-    <hr>
-    {%- for post in collections.all | reverse %}
-      <div class="flow">
-        <span>{{ post.fileSlug }} </span>
-        <pre>{{ post.date | toISO }}</pre>
-      </div>
-    {% endfor %}
+    <details class="flow">
+      <summary>Details</summary>
+      {%- for post in collections.all | reverse %}
+        <div class="flow">
+          <span>{{ post.fileSlug }} </span>
+          <pre>{{ post.date | toISO }}</pre>
+        </div>
+        {% if not loop.last %}<hr>{% endif %}
+      {% endfor %}
+    </details>
   {%- endif -%}
-{%- endblock -%}
-
-{%- block bodyScripts -%}
   <script
   src="/scripts/open-stories.js"
   type="module"

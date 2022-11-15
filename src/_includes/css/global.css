@@ -1,6 +1,6 @@
 :root {
 	--gutter: var(--space-s-m);
-	--dialog-height: 100vh;
+	--min-height: 100vh;
 
 	--text: #fdd9dc;
 	--bg: #1f356e;
@@ -8,7 +8,7 @@
 
 @supports (height: 100dvh) {
 	:root {
-		--dialog-height: 100dvh;
+		--min-height: 100dvh;
 	}
 }
 
@@ -20,14 +20,31 @@ body {
 	color: var(--text);
 }
 
+main {
+	min-height: calc(var(--min-height) - var(--gutter) - var(--gutter));
+	display: grid;
+	place-content: flex-start center;
+}
+
 h1 {
-	font-size: var(--step-4);
+	font-size: var(--step-5);
 	line-height: 1;
 	text-align: center;
 	text-transform: uppercase;
 	font-variation-settings: "wght" 900, "wdth" 50;
 }
 
+.separator {
+	rotate: 180deg;
+	display: block;
+	margin-inline: auto;
+}
+
+.verified,
 .stories-container {
 	--cluster-horizontal-alignment: center;
+}
+
+.verified svg {
+	fill: var(--text);
 }

@@ -1,5 +1,5 @@
 ---
-title: IG like stories
+title: IG Like Stories
 layout: "layouts/home.html"
 ---
 
